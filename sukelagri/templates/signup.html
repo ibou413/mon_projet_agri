@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Créer un compte</h2>
+    
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <button type="submit" class="btn btn-primary btn-block"><a href="{% url 'login' %}"></a>Créer un compte</button>
+        
+        <p class="mt-3">
+            Vous avez déjà un compte ? <a href="{% url 'login' %}">Se connecter</a>
+        </p>
+    </form>
+</div>
+{% endblock %}

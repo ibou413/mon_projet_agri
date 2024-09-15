@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SUKELAGRI{% endblock %}</title>
+    <!-- Inclure les fichiers CSS -->
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% block extra_css %}
+    <!-- CSS additionnel peut être inclus dans les templates qui héritent de main.html -->
+    {% endblock %}
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <div class="container">
+                <a href="{% url 'home' %}" class="navbar-brand">
+                    <img src="{% static 'images/logo_sukelagri.png' %}" alt="SUKELAGRI Logo" class="img-fluid" style="height: 60px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary ms-2" href="{% url 'productor:home' %}">Espace Producteur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary ms-2" href="{% url 'market:home' %}">Marché</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary ms-2" href="{% url 'forum:home' %}">Forum</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-primary ms-2" type="submit">Se déconnecter</button>
+                        </form>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">Se connecter</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        {% block content %}
+        <!-- Le contenu des pages spécifiques sera inséré ici -->
+        {% endblock %}
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="bg-dark text-white text-center text-lg-start mt-5">
+
+        <div class="container p-4">
+            <p>&copy; 2024 SUKELAGRI. Tous droits réservés.</p>
+            <a href="">Politique de confidentialité</a> | 
+            <a href="">Conditions d'utilisation</a>
+        </div>
+    </footer>
+
+    <!-- Fichiers JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}
+    <!-- JavaScript additionnel peut être inclus dans les templates qui héritent de main.html -->
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+{% block title %}Accueil - Productor{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Bienvenue sur la plateforme Productor</h1>
+    
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gérer votre Ferme</h5>
+                    <p class="card-text">
+                        Accédez à vos tableaux de bord pour surveiller et analyser les données de votre ferme. Optimisez vos activités agricoles avec des outils avancés.
+                    </p>
+                    <a href="{% url 'productor:dashboard' %}" class="btn btn-primary">Voir le tableau de bord</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ajouter des Cultures</h5>
+                    <p class="card-text">
+                        Enregistrez et gérez les cultures de votre ferme. Suivez les saisons de plantation et de récolte pour une gestion optimale.
+                    </p>
+                    <a href="{% url 'productor:add_crop' %}" class="btn btn-success">Ajouter une culture</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Consulter les Prévisions Météorologiques</h5>
+                    <p class="card-text">
+                        Accédez aux prévisions météorologiques pour planifier vos activités agricoles et prendre des décisions éclairées.
+                    </p>
+                    <a href="{% url 'productor:weather_forecasts' %}" class="btn btn-info">Voir les prévisions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ajoute du contenu ici pour tester le défilement -->
+    <div style="height: 1000px;"></div>
+    
+</div>
+{% endblock %}
